@@ -1,11 +1,14 @@
 import logo from "./logo.svg";
 import "./App.css";
 import RegisterScreen from "./modules/RegisterScreen/view";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <RegisterScreen />
+      <Routes>
+        <Route path="signup" element={<RegisterScreen />} />
+      </Routes>
     </div>
   );
 }
