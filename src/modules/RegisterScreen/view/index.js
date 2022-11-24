@@ -1,9 +1,8 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
-
-import { Button, Grid, Paper, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Button, Grid, TextField } from "@mui/material";
 
 import FormScreen from "../../FormScreen/view";
 import accountService from "../../../services/accountService";
@@ -22,6 +21,7 @@ const validationSchema = yup.object({
 });
 
 function RegisterScreen() {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -39,6 +39,7 @@ function RegisterScreen() {
 
       try {
         const response = await accountService.createAccount(data);
+        navigate("/login");
         console.log(response);
       } catch (error) {
         console.log(error);
@@ -48,87 +49,73 @@ function RegisterScreen() {
 
   return (
     <FormScreen>
-      <Grid>
-        <Paper elevation={3}>
-          <form onSubmit={formik.handleSubmit}>
-            <Grid container justifyContent="center">
-              <Grid item xs={10}>
-                <TextField
-                  id="username"
-                  name="username"
-                  variant="standard"
-                  label="Name"
-                  value={formik.values.username}
-                  onChange={formik.handleChange}
-                  error={
-                    formik.touched.username && Boolean(formik.errors.username)
-                  }
-                  helperText={formik.touched.username && formik.errors.username}
-                  fullWidth
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={10}>
-                <TextField
-                  id="email"
-                  name="email"
-                  variant="standard"
-                  label="Email"
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  error={formik.touched.email && Boolean(formik.errors.email)}
-                  helperText={formik.touched.email && formik.errors.email}
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={10}>
-                <TextField
-                  id="password"
-                  name="password"
-                  variant="standard"
-                  label="Password"
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  error={
-                    formik.touched.email && Boolean(formik.errors.password)
-                  }
-                  helperText={formik.touched.password && formik.errors.password}
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={10}>
-                <TextField
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  variant="standard"
-                  label="Confirm Password"
-                  value={formik.values.confirmPassword}
-                  onChange={formik.handleChange}
-                  error={
-                    formik.touched.confirmPassword &&
-                    Boolean(formik.errors.confirmPassword)
-                  }
-                  helperText={
-                    formik.touched.confirmPassword &&
-                    formik.errors.confirmPassword
-                  }
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={10}>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                >
-                  Sign Up
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
-        </Paper>
-      </Grid>
+      <form onSubmit={formik.handleSubmit}>
+        <Grid container justifyContent="center">
+          <Grid item xs={10}>
+            <TextField
+              id="username"
+              name="username"
+              variant="standard"
+              label="Name"
+              value={formik.values.username}
+              onChange={formik.handleChange}
+              error={formik.touched.username && Boolean(formik.errors.username)}
+              helperText={formik.touched.username && formik.errors.username}
+              fullWidth
+              autoFocus
+            />
+          </Grid>
+          <Grid item xs={10}>
+            <TextField
+              id="email"
+              name="email"
+              variant="standard"
+              label="Email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={10}>
+            <TextField
+              id="password"
+              name="password"
+              variant="standard"
+              label="Password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={10}>
+            <TextField
+              id="confirmPassword"
+              name="confirmPassword"
+              variant="standard"
+              label="Confirm Password"
+              value={formik.values.confirmPassword}
+              onChange={formik.handleChange}
+              error={
+                formik.touched.confirmPassword &&
+                Boolean(formik.errors.confirmPassword)
+              }
+              helperText={
+                formik.touched.confirmPassword && formik.errors.confirmPassword
+              }
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={10}>
+            <Button type="submit" fullWidth variant="contained" color="primary">
+              Sign Up
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
     </FormScreen>
   );
 }
