@@ -8,7 +8,7 @@ node_js:
 git:
   depth: 3
 script:
-  - npm build
+  - npm run-script build
 deploy:
   provider: pages
   skip_cleanup: true
@@ -18,4 +18,4 @@ deploy:
   target_branch: gh-pages
   commit_message: "Project's deploy"
   on:
-    branch: master
+    branch: main
