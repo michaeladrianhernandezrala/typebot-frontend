@@ -1,0 +1,21 @@
+language: node_js
+cache:
+  directories:
+    - node_modules
+    - ~/.npm
+node_js:
+  - "14"
+git:
+  depth: 3
+script:
+  - npm build
+deploy:
+  provider: pages
+  skip_cleanup: true
+  keep_history: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist/
+  target_branch: gh-pages
+  commit_message: "Project's deploy"
+  on:
+    branch: master
