@@ -84,6 +84,7 @@ function RegisterScreen() {
               name="password"
               variant="standard"
               label="Password"
+              type="password"
               value={formik.values.password}
               onChange={formik.handleChange}
               error={formik.touched.email && Boolean(formik.errors.password)}
@@ -97,6 +98,7 @@ function RegisterScreen() {
               name="confirmPassword"
               variant="standard"
               label="Confirm Password"
+              type="password"
               value={formik.values.confirmPassword}
               onChange={formik.handleChange}
               error={
