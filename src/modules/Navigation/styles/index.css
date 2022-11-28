@@ -1,0 +1,6 @@
+.navigation {
+  border: 1px solid red;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}

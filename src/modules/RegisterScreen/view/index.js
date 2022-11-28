@@ -38,12 +38,9 @@ function RegisterScreen() {
       };
 
       try {
-        const response = await accountService.createAccount(data);
+        await accountService.createAccount(data);
         navigate("/login");
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     },
   });
 

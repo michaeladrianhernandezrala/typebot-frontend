@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Grid, TextField } from "@mui/material";
 
 import FormScreen from "../../FormScreen/view";
+import authService from "../../../services/authService";
 
 const validationSchema = yup.object({
   email: yup
@@ -23,7 +24,10 @@ function LoginScreen() {
     },
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      console.log(values);
+      try {
+        await authService.loginUser(values);
+        navigate("/");
+      } catch (error) {}
     },
   });
   return (
