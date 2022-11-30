@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +16,8 @@ const validationSchema = yup.object({
   password: yup.string("Password").required("Password is required"),
 });
 
-function LoginScreen() {
+function LoginScreen(props) {
+  console.log(props);
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -25,8 +27,9 @@ function LoginScreen() {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
-        await authService.loginUser(values);
-        navigate("/");
+        //await authService.loginUser(values);
+        //props.loginRequest(values);
+        //props.history.push("/");
       } catch (error) {}
     },
   });
@@ -74,4 +77,10 @@ function LoginScreen() {
   );
 }
 
-export default LoginScreen;
+const mapStateToProps = (state) => {
+  return {
+    user: state.userReducer.user,
+  };
+};
+
+export default connect(mapStateToProps)(LoginScreen);

@@ -5,6 +5,7 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   Box,
+  Grid,
   Tooltip,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
@@ -24,46 +25,41 @@ function Navigation() {
 
   return (
     <Box className="navigation">
-      <BottomNavigation value={value} onChange={handleChange}>
-        <Tooltip title="Home" placement="top-start">
-          <BottomNavigationAction
-            icon={<HomeIcon />}
-            LinkComponent={Link}
-            to="/"
-          />
-        </Tooltip>
-        <Tooltip title="Home" placement="top-start">
-          <BottomNavigationAction
-            icon={<SmartToyIcon />}
-            LinkComponent={Link}
-            to="/chatbot"
-          />
-        </Tooltip>
-
-        <Tooltip title="Home" placement="top-start">
-          <BottomNavigationAction
-            icon={<ModeIcon />}
-            LinkComponent={Link}
-            to="/draw"
-          />
-        </Tooltip>
-
-        <Tooltip title="Home" placement="top-start">
-          <BottomNavigationAction
-            icon={<QueryStatsIcon />}
-            LinkComponent={Link}
-            to="/stats"
-          />
-        </Tooltip>
-
-        <Tooltip title="Home" placement="top-start">
-          <BottomNavigationAction
-            icon={<SettingsIcon />}
-            LinkComponent={Link}
-            to="/setting"
-          />
-        </Tooltip>
-      </BottomNavigation>
+      <Grid container justifyContent="space-between">
+        <Grid item xs={3}>
+          <BottomNavigation value={value} onChange={handleChange}>
+            <BottomNavigationAction
+              icon={<HomeIcon />}
+              LinkComponent={Link}
+              to="/"
+            />
+            <BottomNavigationAction
+              icon={<SmartToyIcon />}
+              LinkComponent={Link}
+              to="/chatbot"
+            />
+            <BottomNavigationAction
+              icon={<ModeIcon />}
+              LinkComponent={Link}
+              to="/draw"
+            />
+            <BottomNavigationAction
+              icon={<QueryStatsIcon />}
+              LinkComponent={Link}
+              to="/stats"
+            />
+          </BottomNavigation>
+        </Grid>
+        <Grid item xs={1}>
+          <BottomNavigation value={value} onChange={handleChange}>
+            <BottomNavigationAction
+              icon={<SettingsIcon />}
+              LinkComponent={Link}
+              to="/setting"
+            />
+          </BottomNavigation>
+        </Grid>
+      </Grid>
     </Box>
   );
 }

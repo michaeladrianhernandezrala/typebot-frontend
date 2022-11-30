@@ -1,8 +1,7 @@
-import logo from "./logo.svg";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
+
 import RegisterScreen from "./modules/RegisterScreen/view";
 import LoginScreen from "./modules/LoginScreen/view";
-import { Routes, Route } from "react-router-dom";
 import Dashboard from "./modules/Dashboard/view";
 
 function App() {
