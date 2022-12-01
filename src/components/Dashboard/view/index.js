@@ -1,6 +1,6 @@
 import React from "react";
 
-import Layout from "../../Layout/view";
+import Layout from "../../../routes/Layout/view";
 
 import "../styles/index.css";
 
