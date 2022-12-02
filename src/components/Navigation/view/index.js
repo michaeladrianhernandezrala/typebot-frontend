@@ -13,6 +13,7 @@ import SmartToyIcon from "@mui/icons-material/SmartToy";
 import ModeIcon from "@mui/icons-material/Mode";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import SettingsIcon from "@mui/icons-material/Settings";
+import CodeIcon from "@mui/icons-material/Code";
 
 import "../styles/index.css";
 
@@ -26,33 +27,40 @@ function Navigation() {
   return (
     <Box className="navigation">
       <Grid container justifyContent="space-between">
-        <Grid item xs={3}>
-          <BottomNavigation value={value} onChange={handleChange}>
+        <Grid item>
+          <BottomNavigation showLabels value={value} onChange={handleChange}>
             <BottomNavigationAction
+              label="Dashboard"
               icon={<HomeIcon />}
               LinkComponent={Link}
               to="/"
             />
             <BottomNavigationAction
+              label="Chatbot"
               icon={<SmartToyIcon />}
               LinkComponent={Link}
               to="/chatbot"
             />
             <BottomNavigationAction
+              label="Drawer"
               icon={<ModeIcon />}
               LinkComponent={Link}
               to="/draw"
             />
             <BottomNavigationAction
+              label="Stats"
               icon={<QueryStatsIcon />}
               LinkComponent={Link}
               to="/stats"
             />
-          </BottomNavigation>
-        </Grid>
-        <Grid item xs={1}>
-          <BottomNavigation value={value} onChange={handleChange}>
             <BottomNavigationAction
+              label="API"
+              icon={<CodeIcon />}
+              LinkComponent={Link}
+              to="/api"
+            />
+            <BottomNavigationAction
+              label="Setting"
               icon={<SettingsIcon />}
               LinkComponent={Link}
               to="/setting"

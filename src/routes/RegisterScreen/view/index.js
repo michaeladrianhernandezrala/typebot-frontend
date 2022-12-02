@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { Button, Grid, TextField } from "@mui/material";
 
-import FormScreen from "../../FormScreen/view";
+import FormScreen from "../../../components/FormScreen/view";
 import accountService from "../../../services/accountService";
 
 const validationSchema = yup.object({

@@ -1,11 +1,9 @@
 import React from "react";
-import { connect } from "react-redux";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
 import { Button, Grid, TextField } from "@mui/material";
 
-import FormScreen from "../../FormScreen/view";
+import FormScreen from "../../../components/FormScreen/view";
 import authService from "../../../services/authService";
 
 const validationSchema = yup.object({
@@ -16,9 +14,7 @@ const validationSchema = yup.object({
   password: yup.string("Password").required("Password is required"),
 });
 
-function LoginScreen(props) {
-  console.log(props);
-  const navigate = useNavigate();
+function LoginScreen() {
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -27,6 +23,7 @@ function LoginScreen(props) {
     validationSchema: validationSchema,
     onSubmit: async (values) => {
       try {
+        //console.log(store.dispatch(ActionCreators.loginUser(values)));
         //await authService.loginUser(values);
         //props.loginRequest(values);
         //props.history.push("/");
@@ -77,10 +74,4 @@ function LoginScreen(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.userReducer.user,
-  };
-};
-
-export default connect(mapStateToProps)(LoginScreen);
+export default LoginScreen;
