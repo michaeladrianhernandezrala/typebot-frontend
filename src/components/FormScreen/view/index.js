@@ -11,8 +11,8 @@ import {
 
 function FormScreen({ children }) {
   return (
-    <Box component="main" sx={{ bgcolor: "background.darkPurple" }}>
-      <Container maxWidth="sm">
+    <Box component="main">
+      <Container>
         <Grid>
           <Paper elevation={3}>{children}</Paper>
         </Grid>

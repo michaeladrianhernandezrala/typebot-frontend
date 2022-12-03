@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Button, Grid, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-import FormScreen from "../../../components/FormScreen/view";
-import authService from "../../../services/authService";
+import FormScreen from "../../components/FormScreen/view";
+import authService from "../../services/authService";
+import { useDispatch } from "react-redux";
 
 const validationSchema = yup.object({
   email: yup
@@ -15,18 +17,27 @@ const validationSchema = yup.object({
 });
 
 function LoginScreen() {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+
+  const authUserRequest = async (email, password) => {
+    setIsLoading(true);
+
+    const response = await authService.loginUser(email, password);
+    dispatch();
+  };
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
     validationSchema: validationSchema,
-    onSubmit: async (values) => {
+    onSubmit: async ({ email, password }) => {
       try {
-        //console.log(store.dispatch(ActionCreators.loginUser(values)));
-        //await authService.loginUser(values);
-        //props.loginRequest(values);
-        //props.history.push("/");
+        authUserRequest(email, password);
+        navigate("/");
       } catch (error) {}
     },
   });
